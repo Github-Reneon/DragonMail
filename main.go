@@ -1,31 +1,51 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
-	
-	functionMap := map[string]func(){
-		"look": look,
-		"l": look,
+
+	functionMap := map[string]func(zone *Zone, coords *Coordinates, args ...string){
+		"look":   look,
+		"l":      look,
 		"attack": attack,
-		"a": attack,
-		"exits": exits,
-		"e": exits,
-		"quit": quit,
-		"qq": quit,
+		"a":      attack,
+		"exits":  exits,
+		"e":      exits,
+		"quit":   quit,
+		"qq":     quit,
 	}
 
-	input := ""
+	input := []string{}
+
+	World := createZone()
+	CurrentPosition := Coordinates{
+		X: 0,
+		Y: 0,
+	}
 
 	for {
 		fmt.Print("> ")
 
-		fmt.Scanln(&input)
+		_, err := fmt.Scanln(&input)
 
-		if function, exists := functionMap[input]; exists {
-			function()
+		if nil != err {
+			fmt.Println(err)
+			failQuit()
 		} else {
-			badinput()
+
+			command := input[0]
+
+			args := input[1:]
+
+			if function, exists := functionMap[command]; exists {
+				function(&World, &CurrentPosition, args...)
+			} else {
+				badinput()
+			}
+
+			input = []string{}
 		}
 	}
 }
