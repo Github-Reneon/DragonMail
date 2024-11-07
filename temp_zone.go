@@ -2,6 +2,7 @@ package main
 
 func createZone() Zone {
 	return Zone{
+		Name: "The Dark Cave",
 		Rooms: map[Coordinates]Room{
 			{
 				X: 0,
@@ -9,11 +10,18 @@ func createZone() Zone {
 			}: {
 				Name: "A dark cave",
 				Description: `The smell is dank and repulsive. There is a trickling stream
-in this dark cave. There's a constant background noise of quiet screeching.`,
+in this dark cave that flows to the east.
+There's a constant background noise of quiet but animalistic screeching.`,
 				Characters: []Character{
 					CreateBat(),
 				},
 				Objects: "Spoon",
+				Exits: []Exit{
+					{
+						Direction: East,
+						Door:      false,
+					},
+				},
 			},
 			{
 				X: 1,
@@ -27,6 +35,12 @@ you!`,
 					CreateBat(),
 				},
 				Objects: "Gold!",
+				Exits: []Exit{
+					{
+						Direction: West,
+						Door:      false,
+					},
+				},
 			},
 		},
 	}

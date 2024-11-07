@@ -1,6 +1,10 @@
 package main
 
-import "github.com/Github-Reneon/dicetools"
+import (
+	"dragonmail/ansi"
+
+	"github.com/Github-Reneon/dicetools"
+)
 
 func CreateBat() Character {
 	health := 100 + (dicetools.RollNotation("1d4") * 10)
@@ -31,5 +35,8 @@ func CreateBat() Character {
 		},
 		AB: 1,
 		AC: 10,
+		Tags: []string{
+			ansi.Blue + "(Flying)" + ansi.Reset,
+		},
 	}
 }
