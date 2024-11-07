@@ -15,8 +15,14 @@ func main() {
 		"qq": quit,
 	}
 
+	input := ""
+
 	for {
-		if function, exists := functionMap["looks"]; exists {
+		fmt.Print("> ")
+
+		fmt.Scanln(&input)
+
+		if function, exists := functionMap[input]; exists {
 			function()
 		} else {
 			badinput()
