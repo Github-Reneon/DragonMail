@@ -1,7 +1,10 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
+	"strings"
 )
 
 func main() {
@@ -17,7 +20,7 @@ func main() {
 		"qq":     quit,
 	}
 
-	input := []string{}
+	input := ""
 
 	World := createZone()
 	CurrentPosition := Coordinates{
@@ -28,24 +31,22 @@ func main() {
 	for {
 		fmt.Print("> ")
 
-		_, err := fmt.Scanln(&input)
+		scanner := bufio.NewScanner(os.Stdin)
 
-		if nil != err {
-			fmt.Println(err)
-			failQuit()
+		if scanner.Scan() {
+			input = scanner.Text()
+		}
+
+		parts := strings.Fields(input)
+
+		command := parts[0]
+
+		args := parts[1:]
+
+		if function, exists := functionMap[command]; exists {
+			function(&World, &CurrentPosition, args...)
 		} else {
-
-			command := input[0]
-
-			args := input[1:]
-
-			if function, exists := functionMap[command]; exists {
-				function(&World, &CurrentPosition, args...)
-			} else {
-				badinput()
-			}
-
-			input = []string{}
+			badinput()
 		}
 	}
 }
