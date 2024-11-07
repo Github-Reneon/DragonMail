@@ -1,15 +1,25 @@
 package main
 
+import "fmt"
+
 func main() {
-	functionMap := make(map[string]func())
+	
+	functionMap := map[string]func(){
+		"look": look,
+		"l": look,
+		"attack": attack,
+		"a": attack,
+		"exits": exits,
+		"e": exits,
+		"quit": quit,
+		"qq": quit,
+	}
 
-	functionMap["look"] = look
-
-	functionMap["look"]()
-
-	if function, exists := functionMap["looks"]; exists {
-		function()
-	} else {
-		badinput()
+	for {
+		if function, exists := functionMap["looks"]; exists {
+			function()
+		} else {
+			badinput()
+		}
 	}
 }

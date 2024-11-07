@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"github.com/Github-Reneon/dicetools"
 )
 
@@ -27,4 +28,8 @@ func attack() {
 
 func badinput() {
 	fmt.Println("I don't know how to do that.")
+}
+
+func quit() {
+	os.Exit(0)
 }
