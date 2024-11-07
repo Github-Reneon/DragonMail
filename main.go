@@ -1,15 +1,31 @@
 package main
 
+import "fmt"
+
 func main() {
-	functionMap := make(map[string]func())
+	
+	functionMap := map[string]func(){
+		"look": look,
+		"l": look,
+		"attack": attack,
+		"a": attack,
+		"exits": exits,
+		"e": exits,
+		"quit": quit,
+		"qq": quit,
+	}
 
-	functionMap["look"] = look
+	input := ""
 
-	functionMap["look"]()
+	for {
+		fmt.Print("> ")
 
-	if function, exists := functionMap["looks"]; exists {
-		function()
-	} else {
-		badinput()
+		fmt.Scanln(&input)
+
+		if function, exists := functionMap[input]; exists {
+			function()
+		} else {
+			badinput()
+		}
 	}
 }
