@@ -24,3 +24,7 @@ func attack() {
 
 	fmt.Println("Attack beat an AC of 1: roll was ", roll)
 }
+
+func badinput() {
+	fmt.Println("I don't know how to do that.")
+}
