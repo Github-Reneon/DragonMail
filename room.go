@@ -1,8 +1,11 @@
 package main
 
+import "math/rand"
+
 type Zone struct {
 	Name  string
 	Rooms map[Coordinates]Room
+	Random *rand.Rand
 }
 
 type Coordinates struct {

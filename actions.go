@@ -18,13 +18,30 @@ import (
 
 func look(currentZone *Zone, currentCoords *Coordinates, args ...string) {
 	// Temp POC Implementation
-	fmt.Println(ansi.Green + currentZone.Name + ansi.Reset)
-	fmt.Println(currentZone.Rooms[*currentCoords].Description)
-	fmt.Print("Directions: ")
-	exits(currentZone, currentCoords, []string{}...)
-	for _, character := range currentZone.Rooms[*currentCoords].Characters {
-		fmt.Println(strings.Join(character.Tags, " ") + " " + ansi.Yellow + character.Name + ansi.Reset)
+	
+	if len(args) == 0 {
+		// Zone Look
+		fmt.Println(ansi.Green + currentZone.Name + ansi.Reset)
+		fmt.Println(currentZone.Rooms[*currentCoords].Description)
+		fmt.Print("Directions: ")
+		exits(currentZone, currentCoords, []string{}...)
+		for _, character := range currentZone.Rooms[*currentCoords].Characters {
+			fmt.Println(strings.Join(character.Flags, " ") + " " + ansi.Yellow + character.Name + ansi.Reset)
+		}
+	} else {
+		// Monster & Object Look
+		for _, character := range currentZone.Rooms[*currentCoords].Characters {
+			for _, tag := range character.Tags {
+				if strings.Join(args, " ") == tag {
+					fmt.Println(character.Name)
+					fmt.Printf("HP: %d/%d\n", character.HP.Current, character.HP.Max)
+					return 
+				}
+			}
+		} 
+		fmt.Printf("You don't see a %s", strings.Join(args, " "))
 	}
+
 }
 
 func exits(currentZone *Zone, currentCoords *Coordinates, args ...string) {
@@ -60,10 +77,10 @@ func say(currentZone *Zone, currentCoords *Coordinates, args ...string) {
 
 func attack(currentZone *Zone, currentCoords *Coordinates, args ...string) {
 	// Temp POC Implementation
-	roll := dicetools.RollNotation("1d100")
+	roll := dicetools.RollNotation("1d100", currentZone.Random)
 	fmt.Println("Skill (Attack) beat an skill value of 100: roll was ", roll)
 
-	roll = dicetools.RollNotation("1d20")
+	roll = dicetools.RollNotation("1d20", currentZone.Random)
 	fmt.Println("Attack beat an AC of 1: roll was ", roll)
 }
 

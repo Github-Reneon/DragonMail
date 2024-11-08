@@ -38,6 +38,10 @@ func main() {
 		Y: 0,
 	}
 
+	fmt.Println("Welcome to DragonMail...")
+
+	look(&World, &CurrentPosition, []string{}...)
+
 	for {
 		fmt.Print("> ")
 

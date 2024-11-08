@@ -1,10 +1,16 @@
 package main
 
-import "dragonmail/directions"
+import (
+	"dragonmail/directions"
+	"math/rand"
+	"time"
+)
 
 func createZone() Zone {
+	random := rand.New(rand.NewSource(time.Now().UnixNano()))
 	return Zone{
 		Name: "The Dark Cave",
+		Random: random,
 		Rooms: map[Coordinates]Room{
 			{
 				X: 0,
@@ -13,7 +19,7 @@ func createZone() Zone {
 				Name: "A dark cave",
 				Description: "The smell is dank and repulsive.\nThere is a trickling stream in this dark cave that flows to the east.There's a constant background noise of quiet but animalistic screeching.",
 				Characters: []Character{
-					CreateBat("sleeping"),
+					CreateBat("sleeping", random),
 				},
 				Objects: "Spoon",
 				Exits: []Exit{
@@ -30,8 +36,8 @@ func createZone() Zone {
 				Name: "Deeper into the cave",
 				Description: "You see that the screeching is louder!\nA bat's nest is before you!",
 				Characters: []Character{
-					CreateBat("flying"),
-					CreateBat("sleeping"),
+					CreateBat("flying", random),
+					CreateBat("sleeping", random),
 				},
 				Objects: "Gold!",
 				Exits: []Exit{

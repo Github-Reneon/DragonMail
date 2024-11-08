@@ -3,14 +3,20 @@ package main
 import (
 	"dragonmail/ansi"
 
+	"time"
+	"math/rand"
 	"github.com/Github-Reneon/dicetools"
 )
 
-func CreateBat(tag string) Character {
-	health := 100 + (dicetools.RollNotation("1d4") * 10)
+func CreateBat(tag string, rand *rand.Rand) Character {
+	health := 100 + (dicetools.RollNotation("1d4", rand) * 10)
+	time.Sleep(1 * time.Millisecond)
 	return Character{
 		Name:  "Bat",
 		Class: "DefaultEnemy",
+		Tags: []string{
+			"bat",
+		},
 		STR:   3,
 		DEX:   5,
 		INT:   0,
@@ -35,7 +41,7 @@ func CreateBat(tag string) Character {
 		},
 		AB: 1,
 		AC: 10,
-		Tags: []string{
+		Flags: []string{
 			ansi.Blue + "("+ tag +")" + ansi.Reset,
 		},
 	}
