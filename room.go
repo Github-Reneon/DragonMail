@@ -3,8 +3,8 @@ package main
 import "math/rand"
 
 type Zone struct {
-	Name  string
-	Rooms map[Coordinates]Room
+	Name   string
+	Rooms  map[Coordinates]Room
 	Random *rand.Rand
 }
 
@@ -16,7 +16,7 @@ type Coordinates struct {
 type Exit struct {
 	Direction int
 	Door      bool
-	Opened bool
+	Opened    bool
 	Locked    bool
 	LockDC    int
 }

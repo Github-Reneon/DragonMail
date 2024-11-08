@@ -21,8 +21,8 @@ type Character struct {
 	WIS    int
 	CON    int
 	LUK    int
-	Flags   []string
-	Tags []string
+	Flags  []string
+	Tags   []string
 }
 
 func CreateCharacter(name string, class string, str int, dex int, con int, intel int, wis int, luk int) Character {

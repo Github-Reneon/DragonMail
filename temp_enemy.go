@@ -3,8 +3,9 @@ package main
 import (
 	"dragonmail/ansi"
 
-	"time"
 	"math/rand"
+	"time"
+
 	"github.com/Github-Reneon/dicetools"
 )
 
@@ -17,12 +18,12 @@ func CreateBat(tag string, rand *rand.Rand) Character {
 		Tags: []string{
 			"bat",
 		},
-		STR:   3,
-		DEX:   5,
-		INT:   0,
-		WIS:   1,
-		LUK:   1,
-		CON:   10,
+		STR: 3,
+		DEX: 5,
+		INT: 0,
+		WIS: 1,
+		LUK: 1,
+		CON: 10,
 		HP: Stat{
 			Current: health,
 			Max:     health,
@@ -42,7 +43,7 @@ func CreateBat(tag string, rand *rand.Rand) Character {
 		AB: 1,
 		AC: 10,
 		Flags: []string{
-			ansi.Blue + "("+ tag +")" + ansi.Reset,
+			ansi.Blue + "(" + tag + ")" + ansi.Reset,
 		},
 	}
 }
