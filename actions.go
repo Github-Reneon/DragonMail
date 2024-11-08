@@ -20,6 +20,8 @@ func look(currentZone *Zone, currentCoords *Coordinates, args ...string) {
 	// Temp POC Implementation
 	fmt.Println(ansi.Green + currentZone.Name + ansi.Reset)
 	fmt.Println(currentZone.Rooms[*currentCoords].Description)
+	fmt.Print("Directions: ")
+	exits(currentZone, currentCoords, []string{}...)
 	for _, character := range currentZone.Rooms[*currentCoords].Characters {
 		fmt.Println(strings.Join(character.Tags, " ") + " " + ansi.Yellow + character.Name + ansi.Reset)
 	}
@@ -46,6 +48,14 @@ func exits(currentZone *Zone, currentCoords *Coordinates, args ...string) {
 		}
 		fmt.Print("\r\n")
 	}
+}
+
+/* Doing actions
+
+*/
+
+func say(currentZone *Zone, currentCoords *Coordinates, args ...string) {
+	fmt.Println("You say \"" + strings.Join(args, " ") + "\"")
 }
 
 func attack(currentZone *Zone, currentCoords *Coordinates, args ...string) {

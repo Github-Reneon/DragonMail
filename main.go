@@ -26,6 +26,8 @@ func main() {
 		"w": west,
 		"east": east,
 		"e": east,
+		"say": say,
+		"\"": say,
 	}
 
 	input := ""
