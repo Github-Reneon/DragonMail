@@ -10,16 +10,10 @@ type Coordinates struct {
 	Y int
 }
 
-const (
-	North = 1
-	East  = 2
-	South = 3
-	West  = 4
-)
-
 type Exit struct {
 	Direction int
 	Door      bool
+	Opened bool
 	Locked    bool
 	LockDC    int
 }

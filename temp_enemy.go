@@ -6,7 +6,7 @@ import (
 	"github.com/Github-Reneon/dicetools"
 )
 
-func CreateBat() Character {
+func CreateBat(tag string) Character {
 	health := 100 + (dicetools.RollNotation("1d4") * 10)
 	return Character{
 		Name:  "Bat",
@@ -36,7 +36,7 @@ func CreateBat() Character {
 		AB: 1,
 		AC: 10,
 		Tags: []string{
-			ansi.Blue + "(Flying)" + ansi.Reset,
+			ansi.Blue + "("+ tag +")" + ansi.Reset,
 		},
 	}
 }

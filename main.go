@@ -15,9 +15,17 @@ func main() {
 		"attack": attack,
 		"a":      attack,
 		"exits":  exits,
-		"e":      exits,
+		"ex":      exits,
 		"quit":   quit,
 		"qq":     quit,
+		"north": north,
+		"n": north,
+		"south": south,
+		"s": south,
+		"west": west,
+		"w": west,
+		"east": east,
+		"e": east,
 	}
 
 	input := ""
